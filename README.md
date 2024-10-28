@@ -1,12 +1,6 @@
 # usbhidusage
 
-A _ for writing reliable, asynchronous, and slim applications with
-the Rust programming language. It is:
-
-* **Fast**: _
-
-* **Reliable**: _
-* **Scalable**: _
+A general purpose library for working with usb Human Interface Device Descriptors"
 
 [![Crates.io][crates-badge]][crates-url]
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -20,7 +14,7 @@ the Rust programming language. It is:
 
 ## Overview
 
-usbhidusage is an _ for writing _ with the Rust programming language. At a high
+usbhidusage is  with the Rust programming language. At a high
 level, it provides a few major components:
 
 * _
@@ -65,11 +59,6 @@ project.
 
 
 
-## Changelog
-
-The usbhidusage repository contains multiple crates. Each crate has its own changelog.
-
- * `usbhidusage` - [view changelog](https://github.com/Cry-Tokyo/usbhidusage/blob/master/usbhidusage/CHANGELOG.md)
 
 ## Supported Rust Versions
 
