@@ -2,7 +2,8 @@
 name = "usbhidusage"
 version = "0.1.0"
 edition = "2021"
-
+license = "MIT"
+description = "A general purpose library of"
 [dependencies]
 pcap = "2.2.0"
 pnet = "0.35.0"
