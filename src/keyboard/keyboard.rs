@@ -449,8 +449,8 @@ pub enum KeyboardUsage {
     ReservedE8_FFFF(u16),
 }
 impl From<&u16> for KeyboardUsage {
-    fn from(n: &u16) -> Self {
-        match n {
+    fn from(value: &u16) -> Self {
+        match value {
             0u16 => Self::Reserved00_00,
             1 => Self::KeyboardErrorRollOver,
             2 => Self::KeyboardPOSTFail,
@@ -616,7 +616,7 @@ impl From<&u16> for KeyboardUsage {
             162 => Self::KeyboardClearAgain,
             163 => Self::KeyboardCrSelProps,
             164 => Self::KeyboardExSel,
-            165..=175 => Self::ReservedA5_Af(165),
+            165..=175 => Self::ReservedA5_Af(*value),
             176 => Self::Keypad00,
             177 => Self::Keypad000,
             178 => Self::ThousandsSeparator,
@@ -663,7 +663,7 @@ impl From<&u16> for KeyboardUsage {
             219 => Self::KeypadOctal,
             220 => Self::KeypadDecimal,
             221 => Self::KeypadHexadecimal,
-            222..=223 => Self::ReservedDE_DF(222),
+            222..=223 => Self::ReservedDE_DF(*value),
             224 => Self::KeyboardLeftControl,
             225 => Self::KeyboardLeftShift,
             226 => Self::KeyboardLeftAlt,
@@ -672,7 +672,7 @@ impl From<&u16> for KeyboardUsage {
             229 => Self::KeyboardRightShift,
             230 => Self::KeyboardRightAlt,
             231 => Self::KeyboardRightGUI,
-            232..=65535 => Self::ReservedE8_FFFF(232),
+            232..=65535 => Self::ReservedE8_FFFF(*value),
         }
     }
 }

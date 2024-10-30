@@ -13,4 +13,4 @@
 //! ```
 //!
 mod keyboard;
-pub use self::keyboard::KeyboardUsage;
+pub use keyboard::KeyboardUsage;
