@@ -35,10 +35,10 @@ impl From<&u16> for VrControlsUsage {
             8 => Self::Oculometer,
             9 => Self::Vest,
             10 => Self::AnimatronicDevice,
-            11..32 => Self::Reserved0B_1F(11),
+            11..32 => Self::Reserved0B_1F(*value),
             32 => Self::StereoEnable,
             33 => Self::DisplayEnable,
-            34..=65535 => Self::Reserved22_FFFF(34),
+            34..=65535 => Self::Reserved22_FFFF(*value),
         }
     }
 }
