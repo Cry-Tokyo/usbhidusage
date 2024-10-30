@@ -1,5 +1,5 @@
 #[derive(Clone, Copy, PartialEq, PartialOrd, Ord, Eq, Hash, Debug, Default)]
-struct RGB {
+pub struct RGB {
     r: u8,
     g: u8,
     b: u8,

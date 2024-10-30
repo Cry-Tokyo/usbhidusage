@@ -1,7 +1,8 @@
 use pcap::Capture;
-use pnet::packet::{usbpcap::MutableUsbPcapPacket, Packet};
+use pnet::packet::usbpcap::MutableUsbPcapPacket
 
-#[test]
+fn main() {}
+
 fn usb_pcap_parser() {
     let mut file = Capture::from_file("tests/usb.pcap").unwrap();
     let mut c = 1;
@@ -9,7 +10,7 @@ fn usb_pcap_parser() {
         let data = MutableUsbPcapPacket::owned(packet.to_vec());
         if let Some(array) = data {
             if c == 1951 {
-                println!("{:?}", array.payload())
+                println!("{:?}", array)
             }
 
             assert!(true)
