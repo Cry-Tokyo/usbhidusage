@@ -1,10 +1,12 @@
 [package]
 name = "usbhidusage"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 repository = "https://github.com/Cry-Tokyo/usbhidusage"
 keywords = ["hid", "usb", "usage", "usbhid", "hidusb"]
 categories = []
+license = "MIT"
+description = "A general purpose library for working with usb Human Interface Device Descriptors"
 [dependencies]
 pcap = "2.2.0"
 pnet = "0.35.0"
