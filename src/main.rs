@@ -6,7 +6,15 @@ struct HIDdata {
     padding: u8,
     array: [u8; 6],
 }
-impl HIDdata {}
+impl From<&[u8]> for HIDdata {
+    fn from(value: &[u8]) -> Self {
+        HIDdata {
+            _mod: value[0],
+            padding: value[1],
+            array: value[2..8],
+        }
+    }
+}
 fn main() {
     usb_pcap_parser();
 }
