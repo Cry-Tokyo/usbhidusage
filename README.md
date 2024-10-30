@@ -14,18 +14,15 @@ A general purpose library for working with usb Human Interface Device Descriptor
 
 ## Overview
 
-usbhidusage is  with the Rust programming language. At a high
-level, it provides a few major components:
+usbhidusage is
 
-* _
-* _
-* _
 
-_ .
 
+## Resources
+[https://www.usb.org/sites/default/files/hut1_5.pdf](https://www.usb.org/sites/default/files/hut1_5.pdf)
 ## Example
 
-A PCAP reader with usbhidusage.
+A usb PCAP reader using usbhidusage.
 
 Make sure you state usbhidusage as a dependency on Cargo.toml:
 
@@ -35,7 +32,7 @@ usbhidusage = "0.1.0"
 pcap = "2.2.0"
 pnet = "0.35.0"
 ```
-Then, on your main.rs:
+Then, in your main.rs:
 
 ```rust,no_run
 use usbhidusage;
@@ -55,7 +52,6 @@ project.
 
 [guide]:
 
-## Related Projects
 
 
 
