@@ -1,23 +1,56 @@
 use pcap::Capture;
 use pnet::packet::{usbpcap::MutableUsbPcapPacket, Packet};
-
+mod keyboard;
+use keyboard::KeyboardUsage;
 #[derive(Debug)]
-struct HIDdata {
-    _mod: u8,
+struct HIDData {
+    _mod: KeyboardUsage,
     padding: u8,
-    array: [u8; 6],
+    array: [KeyboardUsage; 6],
 }
-impl<'p> TryFrom<MutableUsbPcapPacket<'p>> for HIDdata {
-    type Error = &'static str;
-    fn try_from(value: MutableUsbPcapPacket) -> Result<Self, Self::Error> {
-        match value.len() == 8 {
-            true => Ok(HIDdata {
-                _mod: value[0],
-                padding: value[1],
-                array: value[2..8].try_into().unwrap_or([0, 0, 0, 0, 0, 0]),
-            }),
-            false => Err("Array slice length is not 8"),
+impl HIDData {
+    const NOEVENT: HIDData = HIDData {
+        _mod: KeyboardUsage::Reserved00_00,
+        padding: 0,
+        array: [
+            KeyboardUsage::Reserved00_00,
+            KeyboardUsage::Reserved00_00,
+            KeyboardUsage::Reserved00_00,
+            KeyboardUsage::Reserved00_00,
+            KeyboardUsage::Reserved00_00,
+            KeyboardUsage::Reserved00_00,
+        ],
+    };
+}
+impl From<&[u8]> for HIDData {
+    fn from(value: &[u8]) -> Self {
+        Self {
+            _mod: KeyboardUsage::from(value[0]),
+            padding: value[1],
+            array: [
+                KeyboardUsage::from(value[2]),
+                KeyboardUsage::from(value[3]),
+                KeyboardUsage::from(value[4]),
+                KeyboardUsage::from(value[5]),
+                KeyboardUsage::from(value[6]),
+                KeyboardUsage::from(value[7]),
+            ],
         }
+    }
+}
+impl std::fmt::Display for HIDData {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut x = String::new();
+        for i in self.array {
+            if i != KeyboardUsage::Reserved00_00
+                || i != KeyboardUsage::ReservedA5_Af(0xA5)
+                || i != KeyboardUsage::ReservedDE_DF(0xDE)
+                || i != KeyboardUsage::ReservedE8_FFFF(0xE8)
+            {
+                x.push_str(i.to_string().as_str());
+            }
+        }
+        write!(f, "Mod_Key: {}, Key_Events: {}", self._mod, x)
     }
 }
 fn main() {
@@ -30,12 +63,12 @@ fn usb_pcap_parser() {
     while let Ok(packet) = file.next_packet() {
         let data = MutableUsbPcapPacket::owned(packet.to_vec());
         if let Some(array) = data {
-            //if c == 1337 {
-            println!("{:?}", HIDdata::try_from(array).unwrap());
-            //}
-
-            assert!(true)
+            match array.get_data_length() == 8 {
+                true => println!("{}", HIDData::from(array.payload())),
+                false => println!("{}", HIDData::NOEVENT),
+            }
         }
         c += 1
     }
+    assert!(true)
 }
