@@ -9,7 +9,7 @@ pub enum SportControlsUsage {
     RowingMachine,
     Treadmill,
     Reserved05_2F(u16),
-    Oar,
+    Oar = 0x30,
     Slope,
     Rate,
     StickSpeed,
@@ -20,7 +20,7 @@ pub enum SportControlsUsage {
     StickType,
     StickHeight,
     Reserved3A_4F(u16),
-    Putter,
+    Putter = 0x50,
     _1Iron,
     _2Iron,
     _3Iron,
@@ -42,15 +42,19 @@ pub enum SportControlsUsage {
     _9Wood,
     Reserved64_FFFF(u16),
 }
-impl From<&u16> for SportControlsUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for SportControlsUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::BaseballBat,
             2 => Self::GolfClub,
             3 => Self::RowingMachine,
             4 => Self::Treadmill,
-            5..48 => Self::Reserved05_2F(*value),
+            5..48 => Self::Reserved05_2F(value),
             48 => Self::Oar,
             49 => Self::Slope,
             50 => Self::Rate,
@@ -61,7 +65,7 @@ impl From<&u16> for SportControlsUsage {
             55 => Self::StickTempo,
             56 => Self::StickType,
             57 => Self::StickHeight,
-            58..80 => Self::Reserved3A_4F(*value),
+            58..80 => Self::Reserved3A_4F(value),
             80 => Self::Putter,
             81 => Self::_1Iron,
             82 => Self::_2Iron,
@@ -82,7 +86,7 @@ impl From<&u16> for SportControlsUsage {
             97 => Self::_5Wood,
             98 => Self::_7Wood,
             99 => Self::_9Wood,
-            100..=65535 => Self::Reserved64_FFFF(*value),
+            100..=65535 => Self::Reserved64_FFFF(value),
         }
     }
 }

@@ -37,14 +37,18 @@ pub enum GameControlsUsage {
     Form_fittingGamepad,
     Reserved3B_FFFF(u16),
 }
-impl From<&u16> for GameControlsUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for GameControlsUsage
+where
+    T: Into<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::_3DGameController,
             2 => Self::PinballDevice,
             3 => Self::GunDevice,
-            4..32 => Self::Reserved04_1F(*value),
+            4..32 => Self::Reserved04_1F(value),
             32 => Self::PointofView,
             33 => Self::TurnRight_Left,
             34 => Self::PitchForward_Backward,
@@ -72,7 +76,7 @@ impl From<&u16> for GameControlsUsage {
             56 => Self::Reserved38,
             57 => Self::GamepadTrigger,
             58 => Self::Form_fittingGamepad,
-            59..=65535 => Self::Reserved3B_FFFF(*value),
+            59..=65535 => Self::Reserved3B_FFFF(value),
         }
     }
 }

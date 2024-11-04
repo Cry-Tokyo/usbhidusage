@@ -32,12 +32,16 @@ pub enum GamingDeviceUsage {
     PointerPoseOffset,
     Reserved42_FFFF(u16),
 }
-impl From<&u16> for GamingDeviceUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for GamingDeviceUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::Background_NonuserControls,
-            2..32 => Self::Reserved02_1F(*value),
+            2..32 => Self::Reserved02_1F(value),
             32 => Self::BatteryStrength,
             33 => Self::WirelessChannel,
             34 => Self::WirelessID,
@@ -59,10 +63,10 @@ impl From<&u16> for GamingDeviceUsage {
             50 => Self::LeftHand,
             51 => Self::RightHand,
             52 => Self::BothHands,
-            53..64 => Self::Reserved35_3F(*value),
+            53..64 => Self::Reserved35_3F(value),
             64 => Self::GripPoseOffset,
             65 => Self::PointerPoseOffset,
-            66..=65535 => Self::Reserved42_FFFF(*value),
+            66..=65535 => Self::Reserved42_FFFF(value),
         }
     }
 }

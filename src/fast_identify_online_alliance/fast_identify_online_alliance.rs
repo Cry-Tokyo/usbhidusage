@@ -6,19 +6,23 @@ pub enum FIDOUsage {
     Undefined,
     U2FAuthenticatorDevice,
     Reserved02_1F(u16),
-    InputReportData,
+    InputReportData = 32,
     OutputReportData,
     Reserved22_FFFF(u16),
 }
-impl From<&u16> for FIDOUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for FIDOUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::U2FAuthenticatorDevice,
-            2..32 => Self::Reserved02_1F(*value),
+            2..32 => Self::Reserved02_1F(value),
             32 => Self::InputReportData,
             33 => Self::OutputReportData,
-            34..=65535 => Self::Reserved22_FFFF(*value),
+            34..=65535 => Self::Reserved22_FFFF(value),
         }
     }
 }

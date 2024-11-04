@@ -40,15 +40,19 @@ pub enum HapticsUsage {
     ReservedforVendorWaveforms2001_2FFF(u16) = 8193,
     Reserved3000_FFFF(u16) = 12288,
 }
-impl From<&u16> for HapticsUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for HapticsUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::SimpleHapticController,
-            2..16 => Self::Reserved02_0F(*value),
+            2..16 => Self::Reserved02_0F(value),
             16 => Self::WaveformList,
             17 => Self::DurationList,
-            18..32 => Self::Reserved12_1F(*value),
+            18..32 => Self::Reserved12_1F(value),
             32 => Self::AutoTrigger,
             33 => Self::ManualTrigger,
             34 => Self::AutoTriggerAssociatedControl,
@@ -58,7 +62,7 @@ impl From<&u16> for HapticsUsage {
             38 => Self::WaveformVendorPage,
             39 => Self::WaveformVendorID,
             40 => Self::WaveformCutoffTime,
-            41..4097 => Self::Reserved29_1000(*value),
+            41..4097 => Self::Reserved29_1000(value),
             4097 => Self::WaveformNone,
             4098 => Self::WaveformStop,
             4099 => Self::WaveformClick,
@@ -76,9 +80,9 @@ impl From<&u16> for HapticsUsage {
             4111 => Self::WaveformBrushContinuous,
             4112 => Self::WaveformEraserContinuous,
             4113 => Self::WaveformSparkleContinuous,
-            4114..8193 => Self::Reserved1012_2000(*value),
-            8193..12288 => Self::ReservedforVendorWaveforms2001_2FFF(*value),
-            12288..=65535 => Self::Reserved3000_FFFF(*value),
+            4114..8193 => Self::Reserved1012_2000(value),
+            8193..12288 => Self::ReservedforVendorWaveforms2001_2FFF(value),
+            12288..=65535 => Self::Reserved3000_FFFF(value),
         }
     }
 }

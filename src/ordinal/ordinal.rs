@@ -10,15 +10,19 @@ pub enum OrdinalUsage {
     Instance4,
     Instance5_65535(u16),
 }
-impl From<&u16> for OrdinalUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for OrdinalUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Reserved,
             1 => Self::Instance1,
             2 => Self::Instance2,
             3 => Self::Instance3,
             4 => Self::Instance4,
-            5..=65535 => Self::Instance5_65535(*value),
+            5..=65535 => Self::Instance5_65535(value),
         }
     }
 }

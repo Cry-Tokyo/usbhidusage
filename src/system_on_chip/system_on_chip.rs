@@ -16,8 +16,12 @@ pub enum SoCUsage {
     FileTransferTillEnd,
     Reserved0B_FFFF(u16),
 }
-impl From<&u16> for SoCUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for SoCUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::SocControl,
@@ -30,7 +34,7 @@ impl From<&u16> for SoCUsage {
             8 => Self::FilePayloadContainsLastBytes,
             9 => Self::FileTransferStop,
             10 => Self::FileTransferTillEnd,
-            11..=65535 => Self::Reserved0B_FFFF(*value),
+            11..=65535 => Self::Reserved0B_FFFF(value),
         }
     }
 }

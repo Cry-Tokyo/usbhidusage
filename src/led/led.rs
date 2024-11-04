@@ -103,8 +103,12 @@ pub enum LedUsage {
     Player8,
     Reserved69_FFFF(u16),
 }
-impl From<&u16> for LedUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for LedUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::NumLock,
@@ -194,7 +198,7 @@ impl From<&u16> for LedUsage {
             85 => Self::GreenLEDChannel,
             86 => Self::LEDIntensity,
             87 => Self::SystemMicrophoneMute,
-            88..96 => Self::Reserved58_5F(*value),
+            88..96 => Self::Reserved58_5F(value),
             96 => Self::PlayerIndicator,
             97 => Self::Player1,
             98 => Self::Player2,
@@ -204,7 +208,7 @@ impl From<&u16> for LedUsage {
             102 => Self::Player6,
             103 => Self::Player7,
             104 => Self::Player8,
-            105..=65535 => Self::Reserved69_FFFF(*value),
+            105..=65535 => Self::Reserved69_FFFF(value),
         }
     }
 }

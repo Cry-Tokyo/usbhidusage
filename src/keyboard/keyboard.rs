@@ -453,7 +453,7 @@ where
     T: TryInto<u16>,
 {
     fn from(value: T) -> Self {
-        let value = value.try_into().unwrap_or(0);
+        let value: u16 = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Reserved00_00,
             1 => Self::KeyboardErrorRollOver,

@@ -441,8 +441,12 @@ pub enum PreferredColors8bit {
     #[default]
     NoPreferredColor = 255,
 }
-impl From<&u8> for PreferredColors8bit {
-    fn from(value: &u8) -> Self {
+impl<T> From<T> for PreferredColors8bit
+where
+    T: TryInto<u8>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(255);
         match value {
             0 => Self::AliceBlue {
                 rgb_values: RGB::new(0xF0, 0xF8, 0xFF),

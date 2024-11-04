@@ -59,8 +59,12 @@ pub enum SimulationControlsUsage {
     RearBrake,
     ReservedD1_FFFF(u16),
 }
-impl From<&u16> for SimulationControlsUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for SimulationControlsUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0u16 => Self::Undefined,
             1 => Self::FlightSimulationDevice,
@@ -75,14 +79,14 @@ impl From<&u16> for SimulationControlsUsage {
             10 => Self::HelicopterSimulationDevice,
             11 => Self::MagicCarpetSimulationDevice,
             12 => Self::BicycleSimulationDevice,
-            13..32 => Self::Reserved0D_1F(*value),
+            13..32 => Self::Reserved0D_1F(value),
             32 => Self::FlightControlStick,
             33 => Self::FlightStick,
             34 => Self::CyclicControl,
             35 => Self::CyclicTrim,
             36 => Self::FlightYoke,
             37 => Self::TrackControl,
-            38..176 => Self::Reserved26_AF(*value),
+            38..176 => Self::Reserved26_AF(value),
             176 => Self::Aileron,
             177 => Self::AileronTrim,
             178 => Self::AntiTorqueControl,
@@ -116,7 +120,7 @@ impl From<&u16> for SimulationControlsUsage {
             206 => Self::HandleBars,
             207 => Self::FrontBrake,
             208 => Self::RearBrake,
-            209..=65535 => Self::ReservedD1_FFFF(*value),
+            209..=65535 => Self::ReservedD1_FFFF(value),
         }
     }
 }

@@ -1,5 +1,3 @@
-use std::default;
-
 #[derive(Clone, Copy, PartialEq, PartialOrd, Ord, Eq, Hash, Debug, Default)]
 #[non_exhaustive]
 #[repr(u16)]
@@ -21,8 +19,12 @@ pub enum VrControlsUsage {
     DisplayEnable,
     Reserved22_FFFF(u16),
 }
-impl From<&u16> for VrControlsUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for VrControlsUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value: u16 = value.try_into().unwrap_or(0);
         match value {
             0 => Self::Undefined,
             1 => Self::Belt,
@@ -35,10 +37,10 @@ impl From<&u16> for VrControlsUsage {
             8 => Self::Oculometer,
             9 => Self::Vest,
             10 => Self::AnimatronicDevice,
-            11..32 => Self::Reserved0B_1F(*value),
+            11..32 => Self::Reserved0B_1F(value),
             32 => Self::StereoEnable,
             33 => Self::DisplayEnable,
-            34..=65535 => Self::Reserved22_FFFF(*value),
+            34..=65535 => Self::Reserved22_FFFF(value),
         }
     }
 }

@@ -129,8 +129,12 @@ pub enum GenericDesktopUsage {
     CallMuteLED,
     ReservedE3_FFFF(u16),
 }
-impl From<&u16> for GenericDesktopUsage {
-    fn from(value: &u16) -> Self {
+impl<T> From<T> for GenericDesktopUsage
+where
+    T: TryInto<u16>,
+{
+    fn from(value: T) -> Self {
+        let value = value.try_into().unwrap_or(0);
         match value {
             0u16 => Self::Undefined,
             1 => Self::Pointer,
@@ -152,7 +156,7 @@ impl From<&u16> for GenericDesktopUsage {
             17 => Self::DeviceDock,
             18 => Self::DockableDevice,
             19 => Self::CallStateManagementControl,
-            20..48 => Self::Reserved14_25(*value),
+            20..48 => Self::Reserved14_25(value),
             48 => Self::X,
             49 => Self::Y,
             50 => Self::Z,
@@ -182,7 +186,7 @@ impl From<&u16> for GenericDesktopUsage {
             74 => Self::Qy,
             75 => Self::Qz,
             76 => Self::Qw,
-            77..128 => Self::Reserved4D_7F(*value),
+            77..128 => Self::Reserved4D_7F(value),
             128 => Self::SystemControl,
             129 => Self::SystemPowerDown,
             130 => Self::SystemSleep,
@@ -211,7 +215,7 @@ impl From<&u16> for GenericDesktopUsage {
             153 => Self::SystemFunctionShiftLockIndicator,
             154 => Self::SystemDismissNotification,
             155 => Self::SystemDoNotDisturb,
-            156..160 => Self::Reserved9C_9F(*value),
+            156..160 => Self::Reserved9C_9F(value),
             160 => Self::SystemDock,
             161 => Self::SystemUndock,
             162 => Self::SystemSetup,
@@ -222,7 +226,7 @@ impl From<&u16> for GenericDesktopUsage {
             167 => Self::SystemSpeakerMute,
             168 => Self::SystemHibernate,
             169 => Self::SystemMicrophoneMute,
-            170..176 => Self::ReservedAA_A7(*value),
+            170..176 => Self::ReservedAA_A7(value),
             176 => Self::SystemDisplayInvert,
             177 => Self::SystemDisplayInternal,
             178 => Self::SystemDisplayExternal,
@@ -231,7 +235,7 @@ impl From<&u16> for GenericDesktopUsage {
             181 => Self::SystemDisplayToggleInt_ExtMode,
             182 => Self::SystemDisplaySwapPrimary_Secondary,
             183 => Self::SystemDisplayToggleLCDAutoscale,
-            184..192 => Self::ReservedB8_BF(*value),
+            184..192 => Self::ReservedB8_BF(value),
             192 => Self::SensorZone,
             193 => Self::RPM,
             194 => Self::CoolantLevel,
@@ -244,7 +248,7 @@ impl From<&u16> for GenericDesktopUsage {
             201 => Self::SystemDisplayRotationLockButton,
             202 => Self::SystemDisplayRotationLockSliderSwitch,
             203 => Self::ControlEnable,
-            204..208 => Self::ReservedCC_CF(*value),
+            204..208 => Self::ReservedCC_CF(value),
             208 => Self::DockableDeviceUniqueID,
             209 => Self::DockableDeviceVendorID,
             210 => Self::DockableDevicePrimaryUsagePage,
@@ -252,11 +256,11 @@ impl From<&u16> for GenericDesktopUsage {
             212 => Self::DockableDeviceDockingState,
             213 => Self::DockableDeviceDisplayOcclusion,
             214 => Self::DockableDeviceObjectType,
-            215..224 => Self::ReservedD7_DF(*value),
+            215..224 => Self::ReservedD7_DF(value),
             224 => Self::CallActiveLED,
             225 => Self::CallMuteToggle,
             226 => Self::CallMuteLED,
-            227..=65535 => Self::ReservedE3_FFFF(*value),
+            227..=65535 => Self::ReservedE3_FFFF(value),
         }
     }
 }
