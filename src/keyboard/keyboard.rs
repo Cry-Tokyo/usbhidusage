@@ -680,11 +680,13 @@ where
         }
     }
 }
+#[cfg(not(feature = "no_std"))]
 impl std::fmt::Display for KeyboardUsage {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "Key Code: {}", self.to_string())
     }
 }
+#[cfg(not(feature = "no_std"))]
 impl KeyboardUsage {
     pub fn to_symbol(&self) -> Option<(&str, &str)> {
         match self {

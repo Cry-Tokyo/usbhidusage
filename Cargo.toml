@@ -11,6 +11,8 @@ description = "A general purpose library for working with usb Human Interface De
 [features]
 no_std = []
 
+[dependencies]
+
 [dev-dependencies]
 pcap = "2.2.0"
 pnet = "0.35.0"
