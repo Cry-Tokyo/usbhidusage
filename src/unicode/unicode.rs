@@ -1,10 +1,12 @@
-struct UnicodeUsage {
+#[derive(Clone, Copy, PartialEq, PartialOrd, Ord, Eq, Hash, Debug, Default)]
+#[non_exhaustive]
+pub struct UnicodeUsage {
     char: char,
 }
 impl UnicodeUsage {
-    const REPLACEMENT_CHARACTER: UnicodeUsage = UnicodeUsage::new(char::REPLACEMENT_CHARACTER);
+    const REPLACEMENT_CHARACTER: UnicodeUsage = Self::new(char::REPLACEMENT_CHARACTER);
     const fn new(char: char) -> Self {
-        UnicodeUsage { char: char }
+        Self { char: char }
     }
 }
 impl<T> From<T> for UnicodeUsage

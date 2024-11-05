@@ -39,7 +39,7 @@ pub enum GameControlsUsage {
 }
 impl<T> From<T> for GameControlsUsage
 where
-    T: Into<u16>,
+    T: TryInto<u16>,
 {
     fn from(value: T) -> Self {
         let value = value.try_into().unwrap_or(0);
