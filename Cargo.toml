@@ -6,7 +6,11 @@ repository = "https://github.com/Cry-Tokyo/usbhidusage"
 keywords = ["hid", "usb", "usage", "usbhid", "hidusb"]
 categories = ["visualization", "development-tools", "encoding"]
 license = "MIT"
-description = "A general purpose library for working with usb Human Interface Device Descriptors"
-[dependencies]
+description = "A general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB) v1.5"
+
+[features]
+no_std = []
+
+[dev-dependencies]
 pcap = "2.2.0"
 pnet = "0.35.0"

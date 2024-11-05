@@ -1,7 +1,7 @@
 #[derive(Clone, Copy, PartialEq, PartialOrd, Ord, Eq, Hash, Debug, Default)]
 #[non_exhaustive]
 #[repr(u16)]
-pub enum MagneticStripeReaderUsage {
+pub enum MedicalInstrumentUsage {
     #[default]
     Undefined,
     MedicalUltrasound,
@@ -41,7 +41,7 @@ pub enum MagneticStripeReaderUsage {
     SoftControlAdjust,
     ReservedA2_FFFF(u16),
 }
-impl<T> From<T> for MagneticStripeReaderUsage
+impl<T> From<T> for MedicalInstrumentUsage
 where
     T: TryInto<u16>,
 {
@@ -84,7 +84,7 @@ where
             138..160 => Self::Reserved8A_9F(value),
             160 => Self::SoftControlSelect,
             161 => Self::SoftControlAdjust,
-            162 => Self::ReservedA2_FFFF(value),
+            162..=65535 => Self::ReservedA2_FFFF(value),
         }
     }
 }

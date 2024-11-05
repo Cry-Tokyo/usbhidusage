@@ -1,3 +1,3 @@
-//!
+//! Sensors Page (0x20)
 mod sensors;
-use sensor::SensorUsage;
+pub use sensors::SensorUsage;

@@ -1,6 +1,6 @@
 # usbhidusage
 
-A general purpose library for working with usb Human Interface Device Descriptors
+A general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB) v 1.5
 
 [![Crates.io][crates-badge]][crates-url]
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
