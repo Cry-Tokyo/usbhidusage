@@ -23,4 +23,4 @@ main.rs
 # Added by cargo
 
 /target
-.github
+.github/
