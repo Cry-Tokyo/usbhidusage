@@ -2,7 +2,7 @@
 
 A general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB) v1.5
 [![Crates.io][crates-badge]][crates-url]
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [crates-badge]: https://img.shields.io/crates/v/usbhidusage.svg
 [crates-url]: https://crates.io/crates/usbhidusage
@@ -11,12 +11,8 @@ A general purpose library for working with usb Human Interface Device Descriptor
 
 ## Overview
 
-usbhidusage is a general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB). Its c  v1.5
+usbhidusage is a general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB). It currently follows the HID Usage Tables for [usb v1.5](https://usb.org/sites/default/files/hut1_5.pdf)
 
-
-
-## Resources
-[https://www.usb.org/sites/default/files/hut1_5.pdf](https://www.usb.org/sites/default/files/hut1_5.pdf)
 ## Example
 
 A usb PCAP reader using usbhidusage.
@@ -65,12 +61,20 @@ This and other examples can be found [here][examples].
 
 [examples]: https://github.com/Cry-Tokyo/usbhidusage/tree/master/examples
 
+
+## Resources
+[https://www.usb.org/hid](https://www.usb.org/hid)
+
+[https://www.usb.org/sites/default/files/hut1_5.pdf](https://www.usb.org/sites/default/files/hut1_5.pdf)
+
+[https://www.igsa.org/en/standards/gds-gaming-device-standards](https://www.igsa.org/en/standards/gds-gaming-device-standards)
+
+[https://www.unicode.org/versions/Unicode16.0.0/](https://www.unicode.org/versions/Unicode16.0.0/)
+
+
 ## Contributing
 
 Feel free to leave any changes or suggestions, the goal would be
-
-
-
 
 
 ## License
