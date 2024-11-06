@@ -4,7 +4,7 @@ version = "0.1.3"
 edition = "2021"
 repository = "https://github.com/Cry-Tokyo/usbhidusage"
 keywords = ["hid", "usb", "usage", "table", "hidusbtable"]
-categories = ["visualization", "development-tools", "encoding"]
+categories = ["visualization", "development-tools", "encoding", "no-std"]
 license = "MIT"
 description = "A general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB) v1.5"
 
