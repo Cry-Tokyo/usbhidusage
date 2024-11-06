@@ -15,6 +15,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Install libpcap
+        run: sudo apt-get install -y libpcap-dev
+      - name: update Rust toolchain
+        run: rustup update
+      - name: update crates
+        run: cargo update
       - name: Install Dependencies
         run: cargo fetch
       - name: Build
