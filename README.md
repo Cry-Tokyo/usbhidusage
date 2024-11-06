@@ -2,13 +2,16 @@
 
 A general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB) v1.5
 
-[![Crates.io][crates-badge]][crates-url]
+
+
+
+
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [crates-badge]: https://img.shields.io/crates/v/usbhidusage.svg
 [crates-url]: https://crates.io/crates/usbhidusage
-[Released API docs](https://docs.rs/hyper/badge.svg)](https://docs.rs/hyper)
-[API Docs](https://docs.rs/usbhidusage)
+
+[![API Docs]](https://docs.rs/usbhidusage)
 
 ## Overview
 
@@ -83,7 +86,7 @@ Feel free to leave any changes or suggestions, the goal would be to follow the s
 
 This project is licensed under the [MIT license].
 
-[MIT license]: https://github.com/tokio-rs/tokio/blob/master/LICENSE
+[MIT license]: https://github.com/Cry-Tokyo/usbhidusage/blob/main/LICENSE
 
 ### Contribution
 
