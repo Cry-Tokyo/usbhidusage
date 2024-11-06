@@ -8,8 +8,7 @@ A general purpose library for working with usb Human Interface Device Descriptor
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-[crates-badge]: https://img.shields.io/crates/v/usbhidusage.svg
-[crates-url]: https://crates.io/crates/usbhidusage
+[![crates-badge](https://img.shields.io/crates/v/usbhidusage.svg)](https://crates.io/crates/usbhidusage)
 
 [![API Docs]](https://docs.rs/usbhidusage)
 
