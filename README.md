@@ -61,32 +61,26 @@ fn main() {
 
 ```
 
-More examples can be found [here][examples].
+This and other examples can be found [here][examples].
 
 [examples]: https://github.com/Cry-Tokyo/usbhidusage/tree/master/examples
 
 ## Contributing
 
-:balloon: Thanks for your help improving the project! We are so happy to have
-you! We have a [contributing guide][guide] to help you get involved in the usbhidusage
-project.
+Feel free to leave any changes or suggestions, the goal would be
 
-[guide]:
-
-
-
-
-
-## Supported Rust Versions
-
-*
-*
-*
 
 
 
 
 ## License
 
+This project is licensed under the [MIT license].
+
+[MIT license]: https://github.com/tokio-rs/tokio/blob/master/LICENSE
 
 ### Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion by you, shall be licensed as MIT, without any additional
+terms or conditions.
