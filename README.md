@@ -10,7 +10,7 @@ A general purpose library for working with usb Human Interface Device Descriptor
 
 [![crates-badge](https://img.shields.io/crates/v/usbhidusage.svg)](https://crates.io/crates/usbhidusage)
 
-[![API Docs]](https://docs.rs/usbhidusage)
+[![API Docs](https://docs.rs/hyper/badge.svg)](https://docs.rs/usbhidusage)
 
 ## Overview
 
