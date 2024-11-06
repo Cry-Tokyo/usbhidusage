@@ -10,7 +10,7 @@ A general purpose library for working with usb Human Interface Device Descriptor
 
 Usbhidusage is a general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB). It currently follows the HID Usage Tables for [usb v1.5](https://usb.org/sites/default/files/hut1_5.pdf)
 
-It currently provides workable enums that tie Usage Name to their Usage ID.
+It currently provides workable enums that tie Usage Names to their specified Usage ID.
 ## Example
 
 A usb PCAP reader using usbhidusage.
