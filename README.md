@@ -1,18 +1,20 @@
 # usbhidusage
 
 A general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB) v1.5
+
 [![Crates.io][crates-badge]][crates-url]
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [crates-badge]: https://img.shields.io/crates/v/usbhidusage.svg
 [crates-url]: https://crates.io/crates/usbhidusage
-
+[Released API docs](https://docs.rs/hyper/badge.svg)](https://docs.rs/hyper)
 [API Docs](https://docs.rs/usbhidusage)
 
 ## Overview
 
-usbhidusage is a general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB). It currently follows the HID Usage Tables for [usb v1.5](https://usb.org/sites/default/files/hut1_5.pdf)
+Usbhidusage is a general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB). It currently follows the HID Usage Tables for [usb v1.5](https://usb.org/sites/default/files/hut1_5.pdf)
 
+It currently provides workable enums that tie Usage Name to their Usage ID.
 ## Example
 
 A usb PCAP reader using usbhidusage.
@@ -25,7 +27,7 @@ usbhidusage = "0.1.0"
 pcap = "2.2.0"
 pnet = "0.35.0"
 ```
-Then, import the libray in your main.rs:
+Then, import the project in your main.rs:
 
 ```rust,no_run
 use pcap::Capture;
@@ -74,7 +76,7 @@ This and other examples can be found [here][examples].
 
 ## Contributing
 
-Feel free to leave any changes or suggestions, the goal would be
+Feel free to leave any changes or suggestions, the goal would be to follow the spec as closely as possible and follow up with any revisions or updates as well.
 
 
 ## License
