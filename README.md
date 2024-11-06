@@ -36,42 +36,6 @@ use pcap::Capture;
 use pnet::packet::{usbpcap::MutableUsbPcapPacket, Packet};
 use usbhidusage::keyboard::KeyboardUsage;
 
-#[derive(Debug)]
-struct HIDData {
-    _mod: KeyboardUsage,
-    padding: u8,
-    array: [KeyboardUsage; 6],
-}
-impl HIDData {
-    const NOEVENT: HIDData = HIDData {
-        _mod: KeyboardUsage::Reserved00_00,
-        padding: 0,
-        array: [
-            KeyboardUsage::Reserved00_00,
-            KeyboardUsage::Reserved00_00,
-            KeyboardUsage::Reserved00_00,
-            KeyboardUsage::Reserved00_00,
-            KeyboardUsage::Reserved00_00,
-            KeyboardUsage::Reserved00_00,
-        ],
-    };
-}
-impl From<&[u8]> for HIDData {
-    fn from(value: &[u8]) -> Self {
-        Self {
-            _mod: KeyboardUsage::from(value[0]),
-            padding: value[1],
-            array: [
-                KeyboardUsage::from(value[2]),
-                KeyboardUsage::from(value[3]),
-                KeyboardUsage::from(value[4]),
-                KeyboardUsage::from(value[5]),
-                KeyboardUsage::from(value[6]),
-                KeyboardUsage::from(value[7]),
-            ],
-        }
-    }
-}
 fn main() {
     let mut file = Capture::from_file("tests/usb.pcap").unwrap();
     let mut c = 1;
