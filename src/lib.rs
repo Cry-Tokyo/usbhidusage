@@ -1,5 +1,5 @@
 //!
-//!
+//! A general purpose library for working with usb Human Interface Device Descriptors from the HID Usage Tables for Universal Serial Bus (USB) v1.5
 //!
 //!
 pub mod arcade;
